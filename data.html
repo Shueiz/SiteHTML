@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Diferença de Dias</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Cor de fundo branca */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #4CAF50; /* Cor de fundo verde */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #ffffff; /* Cor de fundo branca */
+            color: #4CAF50; /* Cor do texto verde */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4CAF50; /* Cor de fundo verde */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        p {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Diferença de Dias</h1>
+        <form id="date-form">
+            <label for="start-date">Data Inicial:</label>
+            <input type="date" id="start-date" required>
+            <label for="end-date">Data Final:</label>
+            <input type="date" id="end-date" required>
+            <button type="button" onclick="calculateDays()">Calcular</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateDays() {
+            const startDate = new Date(document.getElementById("start-date").value);
+            const endDate = new Date(document.getElementById("end-date").value);
+            const timeDiff = endDate - startDate;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            document.getElementById("result").innerText = `Diferença de Dias: ${daysDiff} dias`;
+        }
+    </script>
+</body>
+</html>
