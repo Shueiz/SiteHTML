@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* Cor de fundo branca */
+            background-color: #ffffff;
             font-family: Arial, sans-serif;
         }
 
@@ -16,10 +16,10 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #4CAF50; /* Cor de fundo verde */
+            background-color: #4CAF50;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            color: #ffffff; /* Cor do texto branco */
+            color: #ffffff;
         }
 
         h1 {
@@ -39,8 +39,8 @@
         }
 
         button {
-            background-color: #ffffff; /* Cor de fundo branca */
-            color: #4CAF50; /* Cor do texto verde */
+            background-color: #ffffff;
+            color: #4CAF50;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -48,8 +48,8 @@
         }
 
         button:hover {
-            background-color: #4CAF50; /* Cor de fundo verde */
-            color: #ffffff; /* Cor do texto branco */
+            background-color: #4CAF50;
+            color: #ffffff;
         }
 
         p {
@@ -67,19 +67,28 @@
             <input type="date" id="start-date" required>
             <label for="end-date">Data Final:</label>
             <input type="date" id="end-date" required>
-            <button type="button" onclick="calculateDays()">Calcular</button>
+            <label for="show-years">Mostrar anos:</label>
+            <input type="checkbox" id="show-years">
+            <button type="button" onclick="calculateDifference()">Calcular</button>
         </form>
         <p id="result"></p>
     </div>
 
     <script>
-        function calculateDays() {
+        function calculateDifference() {
             const startDate = new Date(document.getElementById("start-date").value);
             const endDate = new Date(document.getElementById("end-date").value);
+            const showYears = document.getElementById("show-years").checked;
+
             const timeDiff = endDate - startDate;
             const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-            document.getElementById("result").innerText = `Diferença de Dias: ${daysDiff} dias`;
+            if (showYears) {
+                const yearsDiff = endDate.getFullYear() - startDate.getFullYear();
+                document.getElementById("result").innerText = `Diferença: ${yearsDiff} anos e ${daysDiff} dias`;
+            } else {
+                document.getElementById("result").innerText = `Diferença: ${daysDiff} dias`;
+            }
         }
     </script>
 </body>
